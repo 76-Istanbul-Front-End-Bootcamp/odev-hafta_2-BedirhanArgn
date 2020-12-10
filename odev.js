@@ -75,11 +75,31 @@ console.log(isValidName("John"));
   Ornek: katilimSaati("5", "30") 150 sonucunu vermelidir.
 */
 function katilimSaati(dersSayisi, dersSuresi){  
-if(isNaN(dersSayisi)||isNaN(dersSuresi)){
+ if(typeof(dersSayisi)==="boolean"||typeof(dersSuresi)==="boolean") {
+    return false;
+}
+else if(isNaN(dersSayisi)||isNaN(dersSuresi)){
   return false;
 }
 else {
-return dersSayisi*dersSuresi;
+  if(typeof dersSuresi==="string"&&dersSuresi.includes('.')===true) {
+    return false;
+  }
+  else {
+        if(typeof dersSuresi==="number") {
+          let control=dersSuresi.toString();
+          if(control.includes('.')){
+            return false;
+          }
+          else {
+            return dersSayisi*dersSuresi;
+          }
+        }
+    else {
+              return dersSayisi*dersSuresi;
+    }
+  }
+  
 }
 }
 console.log(katilimSaati("3",20));
