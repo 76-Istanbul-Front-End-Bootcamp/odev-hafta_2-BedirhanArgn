@@ -9,8 +9,7 @@ var person = {
     console.log("Hello, " + this.name)
   }
 }
-
-var messageFunc = person.message
+var messageFunc = person.message.bind(person)
 messageFunc();
 
 
@@ -25,8 +24,8 @@ messageFunc();
 var numbers = {
   numbers: [[10,20,30], 2],
   multiply: function(){
-    this.numbers[0].map(function(number, numberIndex){
-        const result = number * this.numbers[1];
+    this.numbers[0].map((number)=>{
+        const result = number *this.numbers[1];
         console.log(result)
     })
   }
@@ -42,10 +41,27 @@ numbers.multiply();
   Ornek : isValidName("John") true donmeli
   Ornek : isValidName(" J ohn") false donmeli
 */
-function isValidName(name){
-
+  function isValidName(name){
+  if(isNaN(name)) {
+      var data=Array.from(name);
+    let control=0;
+    data.map((item,i)=>{
+      if(item===" "||!isNaN(item)) {
+        control=1;
+      }
+    });
+    if(control===1){
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+    else {
+      return false;
+    }
 }
-
+console.log(isValidName("John"));
 /*
   Odev 4:
   Asagidaki katilimSaati fonksionu 2 arguman almaktadir.
@@ -58,8 +74,15 @@ function isValidName(name){
   Ornek: katilimSaati("3", 20) 60 sonucunu vermelidir.
   Ornek: katilimSaati("5", "30") 150 sonucunu vermelidir.
 */
-function katilimSaati(dersSayisi, dersSuresi){
-
+function katilimSaati(dersSayisi, dersSuresi){  
+if(isNaN(dersSayisi)||isNaN(dersSuresi)){
+  return false;
 }
+else {
+return dersSayisi*dersSuresi;
+}
+}
+console.log(katilimSaati("3",20));
+
 
 
