@@ -41,12 +41,13 @@ numbers.multiply();
   Ornek : isValidName("John") true donmeli
   Ornek : isValidName(" J ohn") false donmeli
 */
-  function isValidName(name){
+function isValidName(name){
   if(isNaN(name)) {
-      var data=Array.from(name);
+    let data=name.trim();
+    data=data.split(" ")
     let control=0;
     data.map((item,i)=>{
-      if(item===" "||!isNaN(item)) {
+      if(!isNaN(item)||item.length<2) {
         control=1;
       }
     });
@@ -61,7 +62,7 @@ numbers.multiply();
       return false;
     }
 }
-console.log(isValidName("John"));
+console.log(isValidName("J0E 55"));
 /*
   Odev 4:
   Asagidaki katilimSaati fonksionu 2 arguman almaktadir.
